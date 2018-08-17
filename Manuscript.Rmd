@@ -1,0 +1,184 @@
+---
+title             : "Updating Aversive Racism for the US South in 2018"
+shorttitle        : "Aversive Racism Update"
+
+author: 
+  - name          : "Curtis E. Phills"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "1 UNF Drive, Jacksonville, FL, 32224"
+    email         : "curtis.phills@unf.edu"
+  - name          : "Heather Truelove"
+    affiliation   : "1"
+  - name          : "?"
+    affiliation   : "1"
+  - name          : "?"
+    affiliation   : "1"
+  - name          : "?"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of North Florida"
+
+
+author_note: |
+  Funding for this project was supported by a Small Grant from the College of Arts and Sciences at the University of North Florida to the first author and an undergraduate research grant from the University of North Florida to the fourth author.
+
+abstract: |
+  Enter abstract here. Each new line herein must be indented, like this line.
+  
+keywords          : "Prejudice, Aversive Racism, Hiring Decisions"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+figsintext        : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+mask              : no
+
+class             : "man"
+output            : papaja::apa6_pdf
+
+header-includes:
+  - \raggedbottom
+---
+
+```{r load_packages, include = FALSE}
+if (!require(papaja)){
+  install.packages("papaja", dependencies = TRUE)
+  require(papaja)
+}
+if (!require(tidyverse)){
+  install.packages("tidyverse", dependencies = TRUE)
+  require(tidyverse)
+}
+```
+```{r helpful_functions}
+numformat <- function(val) { 
+  sub("^(-?)0.", "\\1.", sprintf("%s", val)) 
+}
+
+noLeading0Format <- function(val) { 
+  sub("^(-?)0.", "\\1.", sprintf("%s", val)) 
+}
+
+twoDecimalFormat <- function(val){
+  noLeading0Format(format(round(val, 2), nsmall = 2))
+}
+
+threeDecimalFormat <- function(val){
+    noLeading0Format(format(round(val, 3), nsmall = 3))
+}
+
+printPValue <- function(val){
+  ifelse(val < .001, "< .001", paste("= ", threeDecimalFormat(val)))
+}
+
+printRelibality <- function(val){
+  paste("$\\alpha$ = ", twoDecimalFormat(val))
+}
+
+printF <- function(val, effectRow, errorRow){
+  paste("*F*(", val$df[effectRow], ", ", val$df[errorRow], ") = ", twoDecimalFormat(val$statistic[effectRow]), ", *p* ", printPValue(val$p.value[effectRow]), ", $\\eta$*~p~^2^* ", printPValue(val$partial.etasq[effectRow]), sep="")
+}
+
+printT <- function (val, a, b){
+  paste("*t*(", 
+        twoDecimalFormat(val$parameter), 
+        ") = ", 
+        twoDecimalFormat(abs(val$statistic)), 
+        ", *p* ", printPValue(val$p.value), 
+        ", *d* = ", twoDecimalFormat(psych::t2d(abs(val$statistic), n1 = a, n2 = b)), 
+        sep="")
+}
+
+printT2 <- function (val, row){
+  paste("*t*(", 
+        twoDecimalFormat(val$df[row]), 
+        ") = ", 
+        twoDecimalFormat(abs(val$t.ratio[row])), 
+        ", *p* ", printPValue(val$p.value[row]),
+        sep="")
+}
+```
+
+The materials, data, analysis code, and pre-registration documents for this project are shared on the Open Science Framework (<https://osf.io/jxb73/>). The analyses in this paper used `r cite_r("r-references.bib")`.
+
+# Pilot Study
+
+## Method
+
+### Participants and Design
+```{r ProcessPilotData, warning=FALSE}
+
+```
+### Procedure
+
+
+#### Task 1
+
+#### Task 2
+
+## Results
+
+### Hypothesis 1
+```{r PilotDataHyp1, warning=FALSE}
+
+```
+
+### Hypothesis 2
+```{r PilotDataHyp2, warning=FALSE}
+
+```
+
+## Discussion
+
+
+# Main Study
+
+## Method
+
+### Participants and Design
+```{r ProcessMainData, warning=FALSE}
+
+```
+
+### Procedure
+
+#### Task 1
+
+#### Task 2
+
+## Results
+
+### Hypothesis 1
+```{r MainDataHyp1, warning=FALSE}
+
+```
+
+### Hypothesis 2
+```{r MainDataHyp2, warning=FALSE}
+
+```
+
+## Discussion
+
+# General Discussion
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id = "refs"></div>
+\endgroup
